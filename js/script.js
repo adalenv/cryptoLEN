@@ -86,6 +86,11 @@ var app = new Vue({
 		return mineable[symbol];
 	},
 	updateData: function () {
+
+
+
+
+
 		var _this = this;
 
 		url = 'https://api.coinmarketcap.com/v1/ticker/?limit=' + app.settings.num_display;
@@ -131,6 +136,7 @@ var app = new Vue({
 			}
 
 			;
+
 
 			_this.$http.get('https://shapeshift.io/getcoins').then(function (res) {
 				app.shifts = res.body;
@@ -212,7 +218,13 @@ var app = new Vue({
   }
 })
 
+
+
+
 $(document).ready(function() {
+
+
+
 	if (window.location.hash.match(/[A-Z]{3}-\d{2,4}-[tf]/)) {
 		var bits = window.location.hash.split('-');
 		var arr = Object.keys(app.fiat);
@@ -227,6 +239,13 @@ $(document).ready(function() {
 	}
 	app.updateData();
 	setInterval(app.updateData, 300 * 1000);
+
+
+
+
+
+
+
 });
 
 function showModal(symbol) {
@@ -241,3 +260,5 @@ function generateURL() {
 	window.location.hash = "#" + base + "-" + num_display + "-" + unmineable;
 	window.location.reload();
 };
+
+
