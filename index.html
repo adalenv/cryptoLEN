@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>CryptoLEN</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="css/semantic.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
@@ -10,12 +11,23 @@
 </head>
 <body>
 	<div id="app">
-		<div id="sidebar" class="ui sidebar inverted vertical menu visible" style="background: #2f364a !important">
+
+		<div id="sidebar" class="ui sidebar inverted vertical menu visible left-side" style="background: #2f364a !important">
+		
+
+
 			<div class="item">
+					<button class="ui basic small teal icon button sidebar-btn-close"  style="float: left" onclick="$('#sidebar').toggle(function(){ console.log('toggled')})">
+					  <i class="sidebar icon"></i>
+					</button>
 				<br/>
 				<div class="ui inverted centered header">CryptoLEN</div>
+
 			</div>
 			<div class="item">
+			<div class="ui input">
+						<input type="text" id="search_keyword" onkeyup="search()" placeholder="Search Currencies">
+						</div>
 		
 				<br/>
 				<br/>
@@ -127,8 +139,18 @@
 			</div>
 		</div>
 		<div class="pusher">
-			<div class="ui teal inverted segment" style="background: #2f364a !important">
-				<h4>{{ stats.active_currencies }} Currencies / {{ stats.active_assets }} Assets / MarketCap: {{ current }}{{ app.format(stats.total_market_cap_usd) }} / 24h Volume: {{ current }}{{ app.format(stats.total_24h_volume_usd) }}
+			<div class="ui teal inverted segment" style="background: #2f364a !important" >
+				<center>
+					<button class="ui basic small teal icon button sidebar-btn"   onclick="$('#sidebar').toggle(function(){ console.log('toggled')})">
+					  <i class="sidebar icon"></i>
+					</button>
+
+
+				</center>
+				
+
+				<h4>
+{{ stats.active_currencies }} Currencies / {{ stats.active_assets }} Assets / MarketCap: {{ current }}{{ app.format(stats.total_market_cap_usd) }} / 24h Volume: {{ current }}{{ app.format(stats.total_24h_volume_usd) }}
 			</div>
 			<div class="ui two column stackable grid container">
 			  	<div class="column">
@@ -179,7 +201,7 @@
 		  			</div>
 			    </div>
 			  	</div>
-				<table class="ui basic table">
+				<table class="ui basic table" id="main-table">
 				  <thead>
 				    <tr>
 				      <th>Rank</th>
@@ -265,3 +287,25 @@
 	<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
+<script>
+function search() {
+  // Declare variables 
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("search_keyword");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("main-table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+}
+</script>
