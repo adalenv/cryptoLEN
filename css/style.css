@@ -41,3 +41,25 @@ h5 {
 	padding-top: 1em;
 	color: red;
 }
+.sidebar-btn-close{
+	display: none !important;
+}
+.sidebar-btn{
+	display: none !important;
+}
+
+@media screen and (max-width: 500px) {
+	.pusher {
+		margin-left: 0em;
+	}
+	#sidebar{
+		display: none;
+	}
+	.sidebar-btn-close{
+		display: inline-block !important;
+	}
+	.sidebar-btn{
+		  display: inline-block !important;
+	}
+
+}
